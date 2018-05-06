@@ -1,5 +1,10 @@
 body{
 	margin: 0;
+	overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
 }
 
 .container{
@@ -13,25 +18,66 @@ body{
 
 .options{
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
+	top: 0;
+	right: 0;
+	height: 100vh;
 	padding: 0.5em 1em;
+}
+
+#plot-container{
+	background-color: #222;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20em;
+	height: 100vh;
+	transform: translate(-90%,0);
+	padding: 1em;
+	overflow-y: auto;
+	transition: 0.5s;
+}
+
+#plot-container h5{
+	color: #DDD;
+}
+
+#plot-container p,
+#plot-container span{
+	color: #AAA;
+	font-size: 0.75em;
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+}
+
+#plot-container:hover{
+	transform: translate(0,0);
+}
+
+#image-container{
+	position: relative;
 }
 
 #sample-image{
 	max-height: 100vh;
 	max-width: 100vw;
 	/*height: 100%;*/
-	object-fit: contain;
 }
 
 #point-container{
 	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
 }
 
-#canvas{
+#click-field{
 	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
 }
 
 .point{
