@@ -104,12 +104,12 @@ function updateInformation(){
 			let plot = plots[i] 
 
 			content += '<p>' 
-				   + 'Euclidean: ' + plot.euclidean + '</br>'
-	               + 'Actual: ' + plot.actual + '</br>'
-	               + 'Percent length: ' + plot.percentLength + '</br>'
-	               + 'Points: ' + '</br>'
-	               + '\tInitial: { ' + plot.points.point_i.x + ", " + plot.points.point_i.y + ' }</br>'
-	               + '\tFinal: { ' + plot.points.point_f.x + ", " + plot.points.point_f.y + ' }</br>'
+				   + '<span class="label">Euclidean</span>: ' + plot.euclidean + '</br>'
+	               + '<span class="label">Actual</span>: ' + plot.actual + '</br>'
+	               + '<span class="label">Percent length</span>: ' + plot.percentLength + '</br>'
+	               + '<span class="label">Points</span>: ' + '</br>'
+	               + '&nbsp;&nbsp;&nbsp;<span class="label">Initial</span>: { ' + plot.points.point_i.x + ", " + plot.points.point_i.y + ' }</br>'
+	               + '&nbsp;&nbsp;&nbsp;<span class="label">Final</span>: { ' + plot.points.point_f.x + ", " + plot.points.point_f.y + ' }</br>'
 	               + '</p>'
 		}
 	}

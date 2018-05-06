@@ -29,7 +29,7 @@ body{
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 20em;
+	width: 22em;
 	height: 100vh;
 	transform: translate(-90%,0);
 	padding: 1em;
@@ -42,7 +42,7 @@ body{
 }
 
 #plot-container p,
-#plot-container span{
+#plot-container span:not(.label){
 	color: #AAA;
 	font-size: 0.75em;
 	border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -52,6 +52,10 @@ body{
 
 #plot-container:hover{
 	transform: translate(0,0);
+}
+
+#plot-container .label{
+	color: rgb(0,175,175);
 }
 
 #image-container{
