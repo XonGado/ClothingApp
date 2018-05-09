@@ -59,7 +59,7 @@
 
 				<div class="divider"></div>
 
-				<div class="row">
+				<div class="row" id="measurements-div">
 					<h5>
 						Body Measurements </br>
 						<small class="blue-grey-text text-lighten-3">Enter the following units.</small>
@@ -69,45 +69,45 @@
 					<div class="col s12">
 						<span class="helper-text blue-grey-text text-lighten-3">Select a unit of measure</span>
 						<p><label>
-							<input type="radio" name="unit" value="centimeters" />
+							<input type="radio" id="centimeters" name="unit" value="centimeters" />
 							<span>Centimeters</span>
 						</label></p>
 						<p><label>
-							<input type="radio" name="unit" value="inches" />
+							<input type="radio" id="inches" name="unit" value="inches" />
 							<span>Inches</span>
 						</label></p>
 					</div>
 
 					<div class="input-field col s4">
-			        	<input placeholder="Placeholder" name="chest" id="chest" type="text" class="validate">
+			        	<input placeholder="cm" id="chest" type="text" class="validate">
 			        	<label class="active text-uppercase" for="chest">Chest</label>
 			        </div>
 			        <div class="input-field col s4">
-			        	<input placeholder="Placeholder" id="waist" type="text" class="validate">
+			        	<input placeholder="cm" id="waist" type="text" class="validate">
 			        	<label class="active text-uppercase" for="waist">Waist</label>
 			        </div>
 			        <div class="input-field col s4">
-			        	<input placeholder="Placeholder" id="hips" type="text" class="validate">
+			        	<input placeholder="cm" id="hips" type="text" class="validate">
 			        	<label class="active text-uppercase" for="hips">Hips</label>
 			        </div>
 					<div class="input-field col s4">
-			        	<input placeholder="Placeholder" id="inseam" type="text" class="validate">
+			        	<input placeholder="cm" id="inseam" type="text" class="validate">
 			        	<label class="active text-uppercase" for="inseam">Inseam</label>
 			        </div>
 			        <div class="input-field col s4">
-			        	<input placeholder="Placeholder" id="neck" type="text" class="validate">
+			        	<input placeholder="cm" id="neck" type="text" class="validate">
 			        	<label class="active text-uppercase" for="neck">Neck</label>
 			        </div>
 			        <div class="input-field col s4">
-			        	<input placeholder="Placeholder" id="sleeve" type="text" class="validate">
+			        	<input placeholder="cm" id="sleeve" type="text" class="validate">
 			        	<label class="active text-uppercase" for="sleeve">Sleeve</label>
 			        </div>
 					<div class="input-field col s4">
-			        	<input placeholder="Placeholder" id="height" type="text" class="validate">
+			        	<input placeholder="cm" id="height" type="text" class="validate">
 			        	<label class="active text-uppercase" for="height">Height</label>
 			        </div>
 			        <div class="input-field col s4">
-			        	<input placeholder="Placeholder" id="weight" type="text" class="validate">
+			        	<input placeholder="cm" id="weight" type="text" class="validate">
 			        	<label class="active text-uppercase" for="weight">Weight</label>
 			        </div>
 				</div>
@@ -130,6 +130,16 @@
 		$('.sidenav').sidenav();
 		$('select').formSelect();
 		$('#loader').fadeOut();
+		$('#inches').click(function(){
+			$('#measurements-div > .input-field > input[type="text"]').each( function( index, element ) {
+			    $(element).attr("placeholder", "inch")
+			});
+		});
+		$('#centimeters').click(function(){
+			$('#measurements-div > .input-field > input[type="text"]').each( function( index, element ) {
+			    $(element).attr("placeholder", "cm")
+			});
+		});
 	});
 </script>
 </html>
