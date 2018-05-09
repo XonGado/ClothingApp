@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Measurment Form</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+	<style type="text/css">
+		#loader{
+			background-color: white;
+			height: 100vh;
+			width: 100vw;
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0 25vw;
+		}
+	</style>
+</head>
+<body>
+	<div id="loader">
+		<div class="progress">
+			<div class="indeterminate"></div>
+		</div>
+	</div>
+
+	<nav class="blue-grey">
+		<a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+	</nav>
+
+	<ul id="menu" class="sidenav">
+		<li><a class="subheader">Wish to go somewhere else?</a></li>
+		<li><a class="waves-effect blue-grey-text" href="#!">Measurement Form</a></li>
+		<li><a class="waves-effect" href="index.html">Image Interface</a></li>
+	</ul>
+  
+	<div class="container">
+		<div class="row">
+			<form class="col s12">
+
+				<div class="row">
+					<h5>
+						Department
+					</h5>
+					<div class="col s12">
+						<span class="helper-text blue-grey-text text-lighten-3">Select a unit of measure</span>
+						<p><label>
+							<input type="radio" name="dept" value="men" />
+							<span>Men's</span>
+						</label></p>
+						<p><label>
+							<input type="radio" name="dept" value="women" />
+							<span>Women's</span>
+						</label></p>
+					</div>
+				</div>
+
+				<div class="divider"></div>
+
+				<div class="row">
+					<h5>
+						Body Measurements </br>
+						<small class="blue-grey-text text-lighten-3">Enter the following units.</small>
+					</h5>
+
+
+					<div class="col s12">
+						<span class="helper-text blue-grey-text text-lighten-3">Select a unit of measure</span>
+						<p><label>
+							<input type="radio" name="unit" value="centimeters" />
+							<span>Centimeters</span>
+						</label></p>
+						<p><label>
+							<input type="radio" name="unit" value="inches" />
+							<span>Inches</span>
+						</label></p>
+					</div>
+
+					<div class="input-field col s4">
+			        	<input placeholder="Placeholder" name="chest" id="chest" type="text" class="validate">
+			        	<label class="active text-uppercase" for="chest">Chest</label>
+			        </div>
+			        <div class="input-field col s4">
+			        	<input placeholder="Placeholder" id="waist" type="text" class="validate">
+			        	<label class="active text-uppercase" for="waist">Waist</label>
+			        </div>
+			        <div class="input-field col s4">
+			        	<input placeholder="Placeholder" id="hips" type="text" class="validate">
+			        	<label class="active text-uppercase" for="hips">Hips</label>
+			        </div>
+					<div class="input-field col s4">
+			        	<input placeholder="Placeholder" id="inseam" type="text" class="validate">
+			        	<label class="active text-uppercase" for="inseam">Inseam</label>
+			        </div>
+			        <div class="input-field col s4">
+			        	<input placeholder="Placeholder" id="neck" type="text" class="validate">
+			        	<label class="active text-uppercase" for="neck">Neck</label>
+			        </div>
+			        <div class="input-field col s4">
+			        	<input placeholder="Placeholder" id="sleeve" type="text" class="validate">
+			        	<label class="active text-uppercase" for="sleeve">Sleeve</label>
+			        </div>
+					<div class="input-field col s4">
+			        	<input placeholder="Placeholder" id="height" type="text" class="validate">
+			        	<label class="active text-uppercase" for="height">Height</label>
+			        </div>
+			        <div class="input-field col s4">
+			        	<input placeholder="Placeholder" id="weight" type="text" class="validate">
+			        	<label class="active text-uppercase" for="weight">Weight</label>
+			        </div>
+				</div>
+
+				<div class="col s12">
+					<button class="btn btn-block waves-effect waves-light" type="button">
+						<i class="material-icons left">visibility</i>
+						Find my Size
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.sidenav').sidenav();
+		$('select').formSelect();
+		$('#loader').fadeOut();
+	});
+</script>
+</html>

@@ -7,6 +7,33 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
+	<div id="loader">
+		<div class="progress">
+			<div class="indeterminate"></div>
+		</div>
+	</div>
+
+	<nav class="blue-grey">
+		<a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+		<a href="#" data-target="plots" class="sidenav-trigger"><i class="material-icons">linear_scale</i></a>
+		<ul class="right">
+			<a href="#" id="undo" class="waves-effect waves-light">
+				<i class="material-icons">undo</i>
+				
+			</a>
+		</ul>
+	</nav>
+
+	<ul id="menu" class="sidenav">
+		<li><a class="subheader">Wish to go somewhere else?</a></li>
+		<li><a class="waves-effect blue-grey-text" href="form.html">Measurement Form</a></li>
+		<li><a class="waves-effect" href="!#">Image Interface</a></li>
+	</ul>
+
+	<ul id="plots" class="sidenav">
+		<div id="plot-container"></div>
+	</ul>
+
 	<div class="container">
 		<div id="image-container">
 			<img id="sample-image" src="images/franco.jpg">
@@ -14,15 +41,17 @@
 			</div>
 			<div id="click-field"></div>
 		</div>
-		<div id="plot-container"></div>
-		<div class="options">
-			<button id="undo" class="btn waves-effect waves-light black"><i class="material-icons">undo</i></button>
-		</div>
 	</div>
 </body>
 
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.sidenav').sidenav();
+		$('select').formSelect();
+		$('#loader').fadeOut();
+	});
+</script>
 </html>
