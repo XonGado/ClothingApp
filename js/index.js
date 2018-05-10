@@ -93,8 +93,10 @@ function saveCoordinate(e){
 
 function updateInformation(){
 	var plotContainer = document.getElementById("plot-container")
+	var plotContainerLarge = document.getElementById("plot-container-lg-screen")
 
 	plotContainer.innerHTML = ""
+	plotContainerLarge.innerHTML = ""
 	var content = "<h5>Plotted Lines</h5>"
 
 	if (plots.length == 0) {
@@ -115,6 +117,7 @@ function updateInformation(){
 	}
 
 
+	plotContainerLarge.innerHTML = content
 	plotContainer.innerHTML = content
 }
 

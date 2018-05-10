@@ -11,23 +11,27 @@ body{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-direction: column;
+	flex-direction: row;
 	min-height: 100vh;
 	width: 100vw;
 }
 
-#plot-container{
+#plot-container,
+#plot-container-lg-screen{
 	width: 100%;
 	padding: 1em;
 }
 
-#plot-container h5{
-	color: #DDD;
+#plot-container h5,
+#plot-container-lg-screen h5{
+	color: #888;
 }
 
 #plot-container p,
-#plot-container span:not(.label){
-	color: #AAA;
+#plot-container span:not(.label),
+#plot-container-lg-screen p,
+#plot-container-lg-screen span:not(.label){
+	color: #555;
 	font-size: 0.75em;
 	border-bottom: 1px solid rgba(255,255,255,0.1);
 	padding-bottom: 1em;
@@ -38,8 +42,17 @@ body{
 	transform: translate(0,0);
 }*/
 
-#plot-container .label{
+#plot-container .label,
+#plot-container-lg-screen .label{
 	color: rgb(0,175,175);
+}
+
+#plot-container-lg-screen{
+	width: 25vw;
+	background-color: white;
+	height: 100vh;
+	overflow-y: auto;
+	/*padding-top: 60px;*/
 }
 
 #image-container{
