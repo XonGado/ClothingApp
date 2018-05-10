@@ -27,7 +27,13 @@
 	</div>
 
 	<nav class="blue-grey">
-		<a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+		<div class="nav-wrapper">
+			<a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<ul class="right hide-on-med-and-down">
+				<li class="active"><a class="waves-effect" href="#!">Measurement Form</a></li>
+				<li><a class="waves-effect" href="index.html">Image Interface</a></li>
+			</ul>
+		</div>
 	</nav>
 
 	<ul id="menu" class="sidenav">
@@ -110,14 +116,14 @@
 			        	<input placeholder="cm" id="weight" type="text" class="validate">
 			        	<label class="active text-uppercase" for="weight">Weight</label>
 			        </div>
+					<div class="col s12">
+						<button class="btn btn-block waves-effect waves-light" type="button">
+							<i class="material-icons left">visibility</i>
+							Find my Size
+						</button>
+					</div>
 				</div>
 
-				<div class="col s12">
-					<button class="btn btn-block waves-effect waves-light" type="button">
-						<i class="material-icons left">visibility</i>
-						Find my Size
-					</button>
-				</div>
 			</form>
 		</div>
 	</div>
