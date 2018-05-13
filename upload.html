@@ -36,7 +36,8 @@
 						</div>
 
 						<div class="carousel-item center">
-							<button class="btn disabled waves-effect waves-light" id="upload-btn-side">Continue</button>
+							<button class="btn-floating disabled waves-effect waves-light" id="upload-btn-side"><i class="material-icons">arrow_forward</i></button>
+							<span id="form-message">Upload the images first</span>
 						</div>
 
 					</div>
@@ -98,8 +99,14 @@
 		if ( front != "" && side != "") {
 			console.log("Enabling button.")
 			$("#upload-btn-side").removeClass("disabled")
+			$("#form-message").html("Continue")
+		} else if(front == ""){
+			$("#form-message").html("You forgot your front-view image")
+		} else if(side == ""){
+			$("#form-message").html("You forgot your side-view image")
 		} else {
 			console.log("Disabling button.")
+			$("#form-message").html("Upload the images first")
 			$("#upload-btn-side").addClass("disabled")
 		}
 	}

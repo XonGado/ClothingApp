@@ -37,7 +37,11 @@ body{
 }
 
 #upload-btn-side{
-	margin: auto;
+	margin: auto auto 0 auto;
+}
+
+#upload-btn-side + span{
+	margin-bottom: auto;
 }
 
 .carousel-item .preview-image{
