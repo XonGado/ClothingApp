@@ -12,8 +12,11 @@ var previousPoint = null
 var plottedPoints = []
 var plots = []
 
+// resizeImage()
 positionPoints()
 updateInformation()
+
+
 
 // var newMeasurement = {
 // 	points: {
@@ -34,9 +37,32 @@ updateInformation()
 // 	actual: null
 // }
 
-// function setImageContainerDimensions(){
-// 	imageContainer.style.height = image.offsetHeight
-// 	imageContainer.style.width = image.offsetWidth
+// function resizeImage(){
+// 	console.log(image.offsetHeight)
+// 	console.log(image.offsetWidth)
+// 	var height = image.offsetHeight
+// 	var width = image.offsetWidth
+
+// 	if (height > width) {
+// 		console.log("Height is greater than width.")
+// 		var ratio = height / 600
+// 		var newHeight = 600
+// 		var newWidth = ratio * width
+// 	} else if (width > height) {
+// 		console.log("Width is greater than height.")
+// 		var ratio = width / 600
+// 		var newWidth = 600
+// 		var newHeight = ratio * height
+// 	} else {
+// 		console.log("Height and width are equal.")
+// 		var newHeight = 600
+// 		var newWidth = 600
+// 	}
+
+imageContainer.style.height = image.offsetHeight + "px!important"
+imageContainer.style.width = image.offsetWidth + "px!important"
+imageContainer.style.minWidth = image.offsetWidth + "px!important" 
+
 // }
 
 // Creates and plots the points when user clicks on the click-field
@@ -53,13 +79,34 @@ function saveCoordinate(e){
 		y: (e.offsetY / image.offsetHeight) * 100
 	}
 
+	console.log("x: " + newPoint.x + ", y: " + newPoint.y)
+
 	if (previousPoint == null) {
 		previousPoint = newPoint
 		plottedPoints.push(newPoint)
 	} else {
 		plotPoints(previousPoint, newPoint)
 
-		var euclideanValue = euclidean(newPoint.x, newPoint.y, previousPoint.x, previousPoint.y)
+		let p1 = convertPercentToPx(newPoint.x, image.offsetWidth) 
+		let p2 = convertPercentToPx(newPoint.y, image.offsetHeight) 
+		let q1 = convertPercentToPx(previousPoint.x, image.offsetWidth) 
+		let q2 = convertPercentToPx(previousPoint.y, image.offsetHeight) 
+		var euclideanValue = euclidean(p1, p2, q1, q2)
+
+		// console.log("Percentages: ")
+		// console.log("Initial: ")
+		// console.log("x:" + previousPoint.x)
+		// console.log("y:" + previousPoint.y)
+		// console.log("Final: ")
+		// console.log("x:" + newPoint.x)
+		// console.log("y:" + newPoint.y)
+		// console.log("Unknown Values: ")
+		// console.log("Initial: ")
+		// console.log("x:" + previousPoint.x * image.offsetWidth)
+		// console.log("y:" + previousPoint.y * image.offsetHeight)
+		// console.log("Final: ")
+		// console.log("x:" + newPoint.x * image.offsetWidth)
+		// console.log("y:" + newPoint.y * image.offsetHeight)
 
 		var newMeasurement = {
 			euclidean: euclideanValue,
@@ -67,12 +114,12 @@ function saveCoordinate(e){
 			percentLength: convertPxToPercent(euclideanValue),
 			points: {
 				point_i: {
-					x: previousPoint.x,
-					y: previousPoint.y
+					x: convertPercentToPx(previousPoint.x, image.offsetWidth),
+					y: convertPercentToPx(previousPoint.y, image.offsetHeight)
 				},
 				point_f: {
-					x: newPoint.x,
-					y: newPoint.y
+					x: convertPercentToPx(newPoint.x, image.offsetWidth),
+					y: convertPercentToPx(newPoint.y, image.offsetHeight)
 				}
 			}
 		}
@@ -106,12 +153,11 @@ function updateInformation(){
 			let plot = plots[i] 
 
 			content += '<p>' 
-				   + '<span class="label">Euclidean</span>: ' + plot.euclidean + '</br>'
-	               + '<span class="label">Actual</span>: ' + plot.actual + '</br>'
-	               + '<span class="label">Percent length</span>: ' + plot.percentLength + '</br>'
+				   + '<span class="label">Euclidean</span>: ' + plot.euclidean.toFixed(2) + '</br>'
+	               + '<span class="label">Actual</span>: ' + plot.actual.toFixed(2) + '</br>'
 	               + '<span class="label">Points</span>: ' + '</br>'
-	               + '&nbsp;&nbsp;&nbsp;<span class="label">Initial</span>: { ' + plot.points.point_i.x + ", " + plot.points.point_i.y + ' }</br>'
-	               + '&nbsp;&nbsp;&nbsp;<span class="label">Final</span>: { ' + plot.points.point_f.x + ", " + plot.points.point_f.y + ' }</br>'
+	               + '&nbsp;&nbsp;&nbsp;<span class="label">Initial</span>: { ' + plot.points.point_i.x.toFixed(0) + "px, " + plot.points.point_i.y.toFixed(0) + 'px }</br>'
+	               + '&nbsp;&nbsp;&nbsp;<span class="label">Final</span>: { ' + plot.points.point_f.x.toFixed(0) + "px, " + plot.points.point_f.y.toFixed(0) + 'px }</br>'
 	               + '</p>'
 		}
 	}
@@ -119,10 +165,6 @@ function updateInformation(){
 
 	plotContainerLarge.innerHTML = content
 	plotContainer.innerHTML = content
-}
-
-function convertPxToPercent(pixel){
-  	return (pixel / image.offsetWidth) * 100 
 }
 
 // Plots the points that are declared initially
@@ -189,10 +231,10 @@ function createLineElement(x, y, length, angle) {
     var line = document.createElement("div");
 
   	length = (length / image.offsetWidth) * 100 
-  	x = ((x + 2) / image.offsetWidth) * 100 
-  	y = ((y + 1) / image.offsetHeight) * 100 
+  	x = (x / image.offsetWidth) * 100 
+  	y = ((y-0.5) / image.offsetHeight) * 100 
 
-    var styles = 'border: 1px solid white; '
+    var styles = 'border: 0.5px solid white; '
                + 'width: ' + length + '%; '
                + 'height: 0px; '
                + '-moz-transform: rotate(' + angle + 'rad); '
@@ -209,6 +251,9 @@ function createLineElement(x, y, length, angle) {
 
 // Returns a euclidean value given two points.
 function euclidean(p1, p2, q1, q2){
+
+	console.log("p1: " + p1 + ", p2: " + p2 + ", q1: " + q1 + ", q2: " + q2)
+
 	var v1 = (q1 - p1) * (q1 - p1)
 	var v2 = (q2 - p2) * (q2 - p2)
 
@@ -223,10 +268,17 @@ function euclidean(p1, p2, q1, q2){
 
 // Returns a measurement by converting a euclidean value.
 function convertToActual(euclidean){
-	var pixelsPerMetric = 25.873015873015877
+	var pixelsPerMetric = 5.17891350813243
 
 	var measurement = euclidean / pixelsPerMetric
 
 	return measurement
 }
 
+function convertPxToPercent(pixel){
+  	return (pixel / image.offsetWidth) * 100 
+}
+
+function convertPercentToPx(percent, dimension){
+	return (percent / 100) * dimension
+}
