@@ -1,4 +1,5 @@
 var body = document.getElementsByTagName("body")[0]
+
 var imageContainer = document.getElementById("image-container")
 var pointContainer = document.getElementById("point-container")
 var image = document.getElementById("sample-image")
@@ -12,58 +13,10 @@ var previousPoint = null
 var plottedPoints = []
 var plots = []
 
-// resizeImage()
-positionPoints()
 updateInformation()
 
-
-
-// var newMeasurement = {
-// 	points: {
-// 		point_i: {
-// 			x: null,
-// 			y: null
-// 		}
-// 		point_f: {
-// 			x: null,
-// 			y: null
-// 		}
-// 	}
-// 	percentLength: {
-// 		height: null,
-// 		weight: null
-// 	}
-// 	euclidean: null,
-// 	actual: null
-// }
-
-// function resizeImage(){
-// 	console.log(image.offsetHeight)
-// 	console.log(image.offsetWidth)
-// 	var height = image.offsetHeight
-// 	var width = image.offsetWidth
-
-// 	if (height > width) {
-// 		console.log("Height is greater than width.")
-// 		var ratio = height / 600
-// 		var newHeight = 600
-// 		var newWidth = ratio * width
-// 	} else if (width > height) {
-// 		console.log("Width is greater than height.")
-// 		var ratio = width / 600
-// 		var newWidth = 600
-// 		var newHeight = ratio * height
-// 	} else {
-// 		console.log("Height and width are equal.")
-// 		var newHeight = 600
-// 		var newWidth = 600
-// 	}
-
-imageContainer.style.height = image.offsetHeight + "px!important"
-imageContainer.style.width = image.offsetWidth + "px!important"
-imageContainer.style.minWidth = image.offsetWidth + "px!important" 
-
-// }
+imageContainer.style.height = image.offsetHeight + "px"
+imageContainer.style.width = image.offsetWidth + "px"
 
 // Creates and plots the points when user clicks on the click-field
 function saveCoordinate(e){
@@ -92,21 +45,6 @@ function saveCoordinate(e){
 		let q1 = convertPercentToPx(previousPoint.x, image.offsetWidth) 
 		let q2 = convertPercentToPx(previousPoint.y, image.offsetHeight) 
 		var euclideanValue = euclidean(p1, p2, q1, q2)
-
-		// console.log("Percentages: ")
-		// console.log("Initial: ")
-		// console.log("x:" + previousPoint.x)
-		// console.log("y:" + previousPoint.y)
-		// console.log("Final: ")
-		// console.log("x:" + newPoint.x)
-		// console.log("y:" + newPoint.y)
-		// console.log("Unknown Values: ")
-		// console.log("Initial: ")
-		// console.log("x:" + previousPoint.x * image.offsetWidth)
-		// console.log("y:" + previousPoint.y * image.offsetHeight)
-		// console.log("Final: ")
-		// console.log("x:" + newPoint.x * image.offsetWidth)
-		// console.log("y:" + newPoint.y * image.offsetHeight)
 
 		var newMeasurement = {
 			euclidean: euclideanValue,
@@ -162,33 +100,8 @@ function updateInformation(){
 		}
 	}
 
-
 	plotContainerLarge.innerHTML = content
 	plotContainer.innerHTML = content
-}
-
-// Plots the points that are declared initially
-function positionPoints(){
-	var points = document.getElementsByClassName("point")
-
-	for (var i = points.length - 1; i >= 0; i--) {
-		points[i].style.left = points[i].dataset.x + "%"
-		points[i].style.top = points[i].dataset.y + "%"
-	}
-}
-
-// Calls the create line and plots two points
-function plotPoints(point1, point2){
-	var p1 = (point1.x / 100) * image.offsetWidth,
-		p2 = (point1.y / 100) * image.offsetHeight,
-		q1 = (point2.x / 100) * image.offsetWidth,
-		q2 = (point2.y / 100) * image.offsetHeight
-
-	pointContainer.appendChild(createLine(p1, p2, q1, q2));
-
-	var euclideanMeasurement = euclidean(p1, p2, q1, q2)
-	var actualMeasurement = convertToActual(euclideanMeasurement)
-
 }
 
 // Undos previous plotted points and lines
@@ -208,6 +121,19 @@ function undoFunc(){
 		}
 	}
 }
+
+// Calls the create line and plots two points
+function plotPoints(point1, point2){
+	var p1 = (point1.x / 100) * image.offsetWidth,
+		p2 = (point1.y / 100) * image.offsetHeight,
+		q1 = (point2.x / 100) * image.offsetWidth,
+		q2 = (point2.y / 100) * image.offsetHeight
+
+	pointContainer.appendChild(createLine(p1, p2, q1, q2));
+}
+
+//////////////////////////////////////////////////////////////////
+
 
 // Calculates the line's postion, length, and angle
 function createLine(x1, y1, x2, y2) {
@@ -259,10 +185,6 @@ function euclidean(p1, p2, q1, q2){
 
 	var euclideanDist = Math.sqrt(v1 + v2)
 
-	if (euclideanDist == NaN) {
-		console.log("Euclidean distance is NaN!!!")
-	}
-
 	return euclideanDist
 }
 
@@ -275,10 +197,12 @@ function convertToActual(euclidean){
 	return measurement
 }
 
+// Conversion function
 function convertPxToPercent(pixel){
   	return (pixel / image.offsetWidth) * 100 
 }
 
+// Conversion function
 function convertPercentToPx(percent, dimension){
 	return (percent / 100) * dimension
 }

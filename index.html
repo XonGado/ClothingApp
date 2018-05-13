@@ -13,17 +13,30 @@
 		</div>
 	</div>
 
-	<nav class="blue-grey">
-		<a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-		<a href="#" data-target="plots" class="sidenav-trigger"><i class="material-icons">linear_scale</i></a>
-		<ul class="right hide-on-med-and-down">
-			<li class="active"><a class="waves-effect" href="form.html">Measurement Form</a></li>
-			<li><a class="waves-effect" href="!#">Image Interface</a></li>
-		</ul>
-		<ul class="right show-on-med-and-down">
-			<li><a href="#" id="undo" class="waves-effect waves-light"><i class="material-icons left">undo</i> Undo</a></li>
-		</ul>
-	</nav>
+	<div class="navbar-fixed">
+		<nav class="blue-grey nav-extended">
+			<div class="nav-wrapper">
+				<a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				<a href="#" data-target="plots" class="sidenav-trigger"><i class="material-icons">linear_scale</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li class="active"><a class="waves-effect" href="form.html">Measurement Form</a></li>
+					<li><a class="waves-effect" href="!#">Image Interface</a></li>
+				</ul>
+				<ul class="right show-on-med-and-down">
+					<li><a href="#" id="undo" class="waves-effect waves-light"><i class="material-icons left">undo</i> Undo</a></li>
+					<li><a href="#" id="hideImage">Hide Image</a></li>
+				</ul>
+			</div>
+			<div class="nav-content">
+				<ul class="tabs tabs-transparent">
+					<li class="tab col s3"><a href="#plots-div">Plotted Points</a></li>
+					<li class="tab col s3"><a class="active" href="#front-view-image-div">Front View</a></li>
+					<li class="tab col s3"><a href="#side-view-image-div">Side View</a></li>
+					<li class="tab col s3"><a href="#measurement-form-div">Form</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
 
 	<ul id="menu" class="sidenav">
 		<li><a class="subheader">Wish to go somewhere else?</a></li>
@@ -36,11 +49,136 @@
 	</ul>
 
 	<div class="container">
-		<div id="plot-container-lg-screen" class="hide-on-sm"></div>
-		<div id="image-container">
-			<img id="sample-image" src="images/checker.png">
-			<div id="point-container"></div>
-			<div id="click-field"></div>
+		<div class="row">
+
+			<div class="col s12" id="plots-div">
+				<div class="container">
+					<div id="plot-container-lg-screen"></div>
+				</div>
+			</div>
+
+			<div class="col s12" id="front-view-image-div">
+				<div class="container">
+					<div class="image-container" id="image-container">
+						<img class="sample-image" id="sample-image" src="images/sample.jpg">
+						<div class="point-container" id="point-container"></div>
+						<div class="click-field waves-effect waves-light" id="click-field"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col s12" id="side-view-image-div">
+				<div class="container">
+					<div class="image-container" id="image-container-side">
+						<img class="sample-image" id="sample-image-side" src="images/sample.jpg">
+						<div class="point-container" id="point-container-side"></div>
+						<div class="click-field waves-effect waves-light" id="click-field-side"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col s12" id="measurement-form-div">
+				<div class="container">
+					<form id="measurement-form">
+						<div class="row">
+							<h5>
+								Department
+							</h5>
+							<div class="col s12">
+								<span class="helper-text blue-grey-text text-lighten-3">Select a unit of measure</span>
+								<p><label>
+									<input type="radio" name="dept" value="men" />
+									<span>Men's</span>
+								</label></p>
+								<p><label>
+									<input type="radio" name="dept" value="women" />
+									<span>Women's</span>
+								</label></p>
+							</div>
+						</div>
+
+						<div class="divider"></div>
+
+						<div class="row">
+							<h5>
+								Body Measurements </br>
+								<small class="blue-grey-text text-lighten-3">Enter the following units.</small>
+							</h5>
+
+
+							<div class="col s12">
+								<span class="helper-text blue-grey-text text-lighten-3">Select a unit of measure</span>
+								<p><label>
+									<input type="radio" id="centimeters" name="unit" value="centimeters" />
+									<span>Centimeters</span>
+								</label></p>
+								<p><label>
+									<input type="radio" id="inches" name="unit" value="inches" />
+									<span>Inches</span>
+								</label></p>
+							</div>
+
+							<div class="col s12">
+						        <h5>Front</h5>
+					        </div>
+							<div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="chest" type="text" class="validate">
+					        	<label class="active text-uppercase" for="chest">Chest</label>
+					        </div>
+					        <div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="waist" type="text" class="validate">
+					        	<label class="active text-uppercase" for="waist">Waist</label>
+					        </div>
+					        <div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="hips" type="text" class="validate">
+					        	<label class="active text-uppercase" for="hips">Hips</label>
+					        </div>
+							<div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="inseam" type="text" class="validate">
+					        	<label class="active text-uppercase" for="inseam">Inseam</label>
+					        </div>
+					        <div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="neck" type="text" class="validate">
+					        	<label class="active text-uppercase" for="neck">Neck</label>
+					        </div>
+					        <div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="sleeve" type="text" class="validate">
+					        	<label class="active text-uppercase" for="sleeve">Sleeve</label>
+					        </div>
+							<div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="height" type="text" class="validate">
+					        	<label class="active text-uppercase" for="height">Height</label>
+					        </div>
+
+					        <div class="col s12">
+						        <h5>Side</h5>
+					        </div>
+							<div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="chest" type="text" class="validate">
+					        	<label class="active text-uppercase" for="chest">Chest</label>
+					        </div>
+					        <div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="waist" type="text" class="validate">
+					        	<label class="active text-uppercase" for="waist">Waist</label>
+					        </div>
+					        <div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="hips" type="text" class="validate">
+					        	<label class="active text-uppercase" for="hips">Hips</label>
+					        </div>
+					        <div class="input-field col s4 m2 l2">
+					        	<input placeholder="cm" id="neck" type="text" class="validate">
+					        	<label class="active text-uppercase" for="neck">Neck</label>
+					        </div>
+							<div class="col s12">
+								<button class="btn btn-block waves-effect waves-light" type="button">
+									<i class="material-icons left">visibility</i>
+									Find my Size
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
@@ -53,6 +191,19 @@
 		$('.sidenav').sidenav();
 		$('select').formSelect();
 		$('#loader').fadeOut();
+		$('.tabs').tabs({
+			swipeable: true
+		});
+		$('#inches').click(function(){
+			$('#measurements-form .input-field > input[type="text"]').each( function( index, element ) {
+			    $(element).attr("placeholder", "inch")
+			});
+		});
+		$('#centimeters').click(function(){
+			$('#measurements-form .input-field > input[type="text"]').each( function( index, element ) {
+			    $(element).attr("placeholder", "cm")
+			});
+		});
 	});
 </script>
 </html>
