@@ -128,3 +128,8 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 	overflow-y: auto;
 	min-height: calc(100vh - 114px - 10px)
 }
+
+.tabs .tab a{
+	display: flex;
+	align-items: center;
+}
