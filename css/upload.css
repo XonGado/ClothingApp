@@ -2,6 +2,10 @@ body{
 	margin: 0;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 .preview-image{
 	display: none;
 }
@@ -59,4 +63,14 @@ body{
 
 input[type="file"]{
 	display: none;
+}
+
+#help-btn{
+	position: absolute;
+	top: 1em;
+	right: 1em;
+}
+
+#video-help .modal-content{
+	padding: 0;
 }

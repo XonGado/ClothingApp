@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="css/upload.css">
 </head>
 <body>
+	<a href="#video-help" class="btn-floating waves-light waves-effect modal-trigger" id="help-btn"><i class="material-icons">help</i></a>
+
 	<div class="container">
 		<div class="row">
 			<div class="col s12" id="upload-images-div">
@@ -46,6 +48,16 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="video-help" class="modal">
+		<div class="modal-content">
+			<!-- <h4>How to use</h4> -->
+			<!-- <p>How to use</p> -->
+			<video class="responsive-video" controls>
+				<source src="images/Ionic QR Code Generator & Reader.mp4" type="video/mp4">
+			</video>
+		</div>
+	</div>
 </body>
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -56,6 +68,7 @@
 			noWrap: true,
 			padding: 50
 		});
+		$('.modal').modal()
 
 		$("#label-front").click(function(){ 
 			console.log("clicked label front!")
@@ -99,15 +112,21 @@
 		if ( front != "" && side != "") {
 			console.log("Enabling button.")
 			$("#upload-btn-side").removeClass("disabled")
+			$("#upload-btn-side").addClass("pulse")
 			$("#form-message").html("Continue")
 		} else if(front == ""){
 			$("#form-message").html("You forgot your front-view image")
+			$("#upload-btn-side").addClass("disabled")
+			$("#upload-btn-side").removeClass("pulse")
 		} else if(side == ""){
 			$("#form-message").html("You forgot your side-view image")
+			$("#upload-btn-side").addClass("disabled")
+			$("#upload-btn-side").removeClass("pulse")
 		} else {
 			console.log("Disabling button.")
 			$("#form-message").html("Upload the images first")
 			$("#upload-btn-side").addClass("disabled")
+			$("#upload-btn-side").removeClass("pulse")
 		}
 	}
 
