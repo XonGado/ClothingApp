@@ -72,6 +72,8 @@ function clear(view, target){
 	elements.each(function(){
 		$(this).remove()
 	})
+
+	$("#" + target).val("")
 }
 
 function undoTarget(view, target){

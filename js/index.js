@@ -4,7 +4,7 @@ var previousPoint = null
 var plottedPoints = []
 var plots = []
 
-// updateInformation()
+updateInformation()
 
 // Creates and plots the points when user clicks on the click-field
 function saveCoordinate(event, view){
@@ -26,6 +26,10 @@ function saveCoordinate(event, view){
 	}
 
 	if (previousPoint == null) {
+		if($("#point-container-" + view + " ." + target(view)).length % 3 == 0){
+			console.log($("#point-container-" + view + " ." + target(view)).length)
+			clear(view, target(view))
+		}
 		previousPoint = newPoint
 		plottedPoints.push(newPoint)
 	} else {
@@ -57,7 +61,7 @@ function saveCoordinate(event, view){
 
 		plots.push(newMeasurement)
 
-		// updateInformation()
+		updateInformation()
 
 		plottedPoints.push(newPoint)
 		previousPoint = null
@@ -66,50 +70,32 @@ function saveCoordinate(event, view){
 	$("#point-container-" + view).append(point)
 }
 
-// function updateInformation(){
-// 	var plotContainer = document.getElementById("plot-container")
-// 	var plotContainerLarge = document.getElementById("plot-container-lg-screen")
+function updateInformation(){
+	var plotContainer = document.getElementById("plot-container")
+	var plotContainerLarge = document.getElementById("plot-container-lg-screen")
 
-// 	plotContainer.innerHTML = ""
-// 	plotContainerLarge.innerHTML = ""
-// 	var content = "<h5>Plotted Lines</h5>"
+	plotContainer.innerHTML = ""
+	plotContainerLarge.innerHTML = ""
+	var content = "<h5>Plotted Lines</h5>"
 
-// 	if (plots.length == 0) {
-// 		content += "<p>Click on the image to plot some lines.</p>"
-// 	} else {
-// 		for (var i = plots.length - 1; i >= 0; i--) {
-// 			let plot = plots[i] 
+	if (plots.length == 0) {
+		content += "<p>Click on the image to plot some lines.</p>"
+	} else {
+		for (var i = plots.length - 1; i >= 0; i--) {
+			let plot = plots[i] 
 
-// 			content += '<p>' 
-// 				   + '<span class="label">Euclidean</span>: ' + plot.euclidean.toFixed(2) + '</br>'
-// 	               + '<span class="label">Actual</span>: ' + plot.actual.toFixed(2) + '</br>'
-// 	               + '<span class="label">Points</span>: ' + '</br>'
-// 	               + '&nbsp;&nbsp;&nbsp;<span class="label">Initial</span>: { ' + plot.points.point_i.x.toFixed(0) + "px, " + plot.points.point_i.y.toFixed(0) + 'px }</br>'
-// 	               + '&nbsp;&nbsp;&nbsp;<span class="label">Final</span>: { ' + plot.points.point_f.x.toFixed(0) + "px, " + plot.points.point_f.y.toFixed(0) + 'px }</br>'
-// 	               + '</p>'
-// 		}
-// 	}
-
-// 	plotContainerLarge.innerHTML = content
-// 	plotContainer.innerHTML = content
-// }
-
-// Undos previous plotted points and lines
-function undoFunc(){
-	if (pointContainer.children.length > 0) {
-		if (previousPoint == null) {
-			plottedPoints.pop()
-			previousPoint = plottedPoints[plottedPoints.length - 1]
-			pointContainer.removeChild(pointContainer.lastChild)
-			pointContainer.removeChild(pointContainer.lastChild)
-			plots.pop()
-			updateInformation()
-		} else {
-			plottedPoints.pop()
-			previousPoint = null
-			pointContainer.removeChild(pointContainer.lastChild)
+			content += '<p>' 
+				   + '<span class="label">Euclidean</span>: ' + plot.euclidean.toFixed(2) + '</br>'
+	               + '<span class="label">Actual</span>: ' + plot.actual.toFixed(2) + '</br>'
+	               + '<span class="label">Points</span>: ' + '</br>'
+	               + '&nbsp;&nbsp;&nbsp;<span class="label">Initial</span>: { ' + plot.points.point_i.x.toFixed(0) + "px, " + plot.points.point_i.y.toFixed(0) + 'px }</br>'
+	               + '&nbsp;&nbsp;&nbsp;<span class="label">Final</span>: { ' + plot.points.point_f.x.toFixed(0) + "px, " + plot.points.point_f.y.toFixed(0) + 'px }</br>'
+	               + '</p>'
 		}
 	}
+
+	plotContainerLarge.innerHTML = content
+	plotContainer.innerHTML = content
 }
 
 // Calls the create line and plots two points

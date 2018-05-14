@@ -153,6 +153,7 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 	display: flex;
 	margin: 0;
 	/*justify-content: center;*/
+	flex-wrap: wrap;
 }
 
 .toolbar ul li{
