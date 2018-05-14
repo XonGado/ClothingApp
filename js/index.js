@@ -1,108 +1,98 @@
 var body = document.getElementsByTagName("body")[0]
 
-var imageContainer = document.getElementById("image-container")
-var pointContainer = document.getElementById("point-container")
-var image = document.getElementById("sample-image")
-var field = document.getElementById("click-field")
-var undo = document.getElementById("undo")
-
-undo.addEventListener("click", undoFunc)
-field.addEventListener("click", saveCoordinate)
-
 var previousPoint = null
 var plottedPoints = []
 var plots = []
 
-updateInformation()
-
-imageContainer.style.height = image.offsetHeight + "px"
-imageContainer.style.width = image.offsetWidth + "px"
+// updateInformation()
 
 // Creates and plots the points when user clicks on the click-field
-function saveCoordinate(e){
+function saveCoordinate(event, view){
+	var height = $("#sample-image-" + view).outerHeight()
+	var width = $("#sample-image-" + view).outerWidth()
+	var clickX = event.offsetX
+	var clickY = event.offsetY
+
 	var point = document.createElement("span")
-	point.className = "point"
-	point.setAttribute("data-x", e.offsetX / image.offsetWidth)
-	point.setAttribute("data-y", e.offsetY / image.offsetHeight)
-	point.style.left = ((e.offsetX / image.offsetWidth) * 100) + "%"
-	point.style.top = ((e.offsetY / image.offsetHeight) * 100) + "%"
+	point.className = "point " + target(view)
+	point.setAttribute("data-x", clickX / width)
+	point.setAttribute("data-y", clickY / height)
+	point.style.left = ((clickX / width) * 100) + "%"
+	point.style.top = ((clickY / height) * 100) + "%"
 
 	var newPoint = {
-		x: (e.offsetX / image.offsetWidth) * 100,
-		y: (e.offsetY / image.offsetHeight) * 100
+		x: (clickX / width) * 100,
+		y: (clickY / height) * 100
 	}
-
-	console.log("x: " + newPoint.x + ", y: " + newPoint.y)
 
 	if (previousPoint == null) {
 		previousPoint = newPoint
 		plottedPoints.push(newPoint)
 	} else {
-		plotPoints(previousPoint, newPoint)
+		plotPoints(previousPoint, newPoint, view)
 
-		let p1 = convertPercentToPx(newPoint.x, image.offsetWidth) 
-		let p2 = convertPercentToPx(newPoint.y, image.offsetHeight) 
-		let q1 = convertPercentToPx(previousPoint.x, image.offsetWidth) 
-		let q2 = convertPercentToPx(previousPoint.y, image.offsetHeight) 
+		let p1 = convertPercentToPx(newPoint.x, width) 
+		let p2 = convertPercentToPx(newPoint.y, height) 
+		let q1 = convertPercentToPx(previousPoint.x, width) 
+		let q2 = convertPercentToPx(previousPoint.y, height) 
 		var euclideanValue = euclidean(p1, p2, q1, q2)
+
+		$("#" + target(view)).val(euclideanValue.toFixed(2))
 
 		var newMeasurement = {
 			euclidean: euclideanValue,
 			actual: convertToActual(euclideanValue),
-			percentLength: convertPxToPercent(euclideanValue),
+			percentLength: convertPxToPercent(euclideanValue, view),
 			points: {
 				point_i: {
-					x: convertPercentToPx(previousPoint.x, image.offsetWidth),
-					y: convertPercentToPx(previousPoint.y, image.offsetHeight)
+					x: convertPercentToPx(previousPoint.x, width),
+					y: convertPercentToPx(previousPoint.y, height)
 				},
 				point_f: {
-					x: convertPercentToPx(newPoint.x, image.offsetWidth),
-					y: convertPercentToPx(newPoint.y, image.offsetHeight)
+					x: convertPercentToPx(newPoint.x, width),
+					y: convertPercentToPx(newPoint.y, height)
 				}
 			}
 		}
 
 		plots.push(newMeasurement)
 
-		updateInformation()
-
-		console.log(plots)
+		// updateInformation()
 
 		plottedPoints.push(newPoint)
 		previousPoint = null
-
 	}
 
-	pointContainer.appendChild(point)
+	$("#point-container-" + view).append(point)
 }
 
-function updateInformation(){
-	var plotContainer = document.getElementById("plot-container")
-	var plotContainerLarge = document.getElementById("plot-container-lg-screen")
+// function updateInformation(){
+// 	var plotContainer = document.getElementById("plot-container")
+// 	var plotContainerLarge = document.getElementById("plot-container-lg-screen")
 
-	plotContainer.innerHTML = ""
-	plotContainerLarge.innerHTML = ""
-	var content = "<h5>Plotted Lines</h5>"
+// 	plotContainer.innerHTML = ""
+// 	plotContainerLarge.innerHTML = ""
+// 	var content = "<h5>Plotted Lines</h5>"
 
-	if (plots.length == 0) {
-		content += "<p>Click on the image to plot some lines.</p>"
-	} else {
-		for (var i = plots.length - 1; i >= 0; i--) {
-			let plot = plots[i] 
+// 	if (plots.length == 0) {
+// 		content += "<p>Click on the image to plot some lines.</p>"
+// 	} else {
+// 		for (var i = plots.length - 1; i >= 0; i--) {
+// 			let plot = plots[i] 
 
-			content += '<p>' 
-				   + '<span class="label">Euclidean</span>: ' + plot.euclidean.toFixed(2) + '</br>'
-	               + '<span class="label">Actual</span>: ' + plot.actual.toFixed(2) + '</br>'
-	               + '<span class="label">Points</span>: ' + '</br>'
-	               + '&nbsp;&nbsp;&nbsp;<span class="label">Initial</span>: { ' + plot.points.point_i.x.toFixed(0) + "px, " + plot.points.point_i.y.toFixed(0) + 'px }</br>'
-	               + '&nbsp;&nbsp;&nbsp;<span class="label">Final</span>: { ' + plot.points.point_f.x.toFixed(0) + "px, " + plot.points.point_f.y.toFixed(0) + 'px }</br>'
-	               + '</p>'
-		}
-	}
+// 			content += '<p>' 
+// 				   + '<span class="label">Euclidean</span>: ' + plot.euclidean.toFixed(2) + '</br>'
+// 	               + '<span class="label">Actual</span>: ' + plot.actual.toFixed(2) + '</br>'
+// 	               + '<span class="label">Points</span>: ' + '</br>'
+// 	               + '&nbsp;&nbsp;&nbsp;<span class="label">Initial</span>: { ' + plot.points.point_i.x.toFixed(0) + "px, " + plot.points.point_i.y.toFixed(0) + 'px }</br>'
+// 	               + '&nbsp;&nbsp;&nbsp;<span class="label">Final</span>: { ' + plot.points.point_f.x.toFixed(0) + "px, " + plot.points.point_f.y.toFixed(0) + 'px }</br>'
+// 	               + '</p>'
+// 		}
+// 	}
 
-	plotContainerLarge.innerHTML = content
-	plotContainer.innerHTML = content
-}
+// 	plotContainerLarge.innerHTML = content
+// 	plotContainer.innerHTML = content
+// }
 
 // Undos previous plotted points and lines
 function undoFunc(){
@@ -123,20 +113,22 @@ function undoFunc(){
 }
 
 // Calls the create line and plots two points
-function plotPoints(point1, point2){
-	var p1 = (point1.x / 100) * image.offsetWidth,
-		p2 = (point1.y / 100) * image.offsetHeight,
-		q1 = (point2.x / 100) * image.offsetWidth,
-		q2 = (point2.y / 100) * image.offsetHeight
+function plotPoints(point1, point2, view){
+	var p1 = (point1.x / 100) * $("#sample-image-" + view).outerWidth(),
+		p2 = (point1.y / 100) * $("#sample-image-" + view).outerHeight(),
+		q1 = (point2.x / 100) * $("#sample-image-" + view).outerWidth(),
+		q2 = (point2.y / 100) * $("#sample-image-" + view).outerHeight()
 
-	pointContainer.appendChild(createLine(p1, p2, q1, q2));
+	$("#point-container-" + view).append(createLine(p1, p2, q1, q2, view));
 }
 
 //////////////////////////////////////////////////////////////////
 
 
 // Calculates the line's postion, length, and angle
-function createLine(x1, y1, x2, y2) {
+function createLine(x1, y1, x2, y2, view) {
+	console.log("createLine(" + x1 + ", " + y1 + ", " + x2 + ", " + y2 + ")")
+
     var a = x1 - x2,
         b = y1 - y2,
         c = Math.sqrt(a * a + b * b);
@@ -149,16 +141,19 @@ function createLine(x1, y1, x2, y2) {
 
     var alpha = Math.PI - Math.atan2(-b, a);
 
-    return createLineElement(x, y, c, alpha);
+    return createLineElement(x, y, c, alpha, view);
 }
 
 // Creates the line based on the given postion, length, and angle
-function createLineElement(x, y, length, angle) {
+function createLineElement(x, y, length, angle, view) {
     var line = document.createElement("div");
 
-  	length = (length / image.offsetWidth) * 100 
-  	x = (x / image.offsetWidth) * 100 
-  	y = ((y-0.5) / image.offsetHeight) * 100 
+    var width = $("#sample-image-" + view).outerWidth()
+    var height = $("#sample-image-" + view).outerHeight()
+
+  	length = (length / width) * 100 
+  	x = (x / width) * 100 
+  	y = ((y-0.5) / height) * 100 
 
     var styles = 'border: 0.5px solid white; '
                + 'width: ' + length + '%; '
@@ -171,14 +166,13 @@ function createLineElement(x, y, length, angle) {
                + 'top: ' + y + '%; '
                + 'left: ' + x + '%; ';
     line.setAttribute('style', styles);  
+    line.className = target(view)
 
     return line;
 }
 
 // Returns a euclidean value given two points.
 function euclidean(p1, p2, q1, q2){
-
-	console.log("p1: " + p1 + ", p2: " + p2 + ", q1: " + q1 + ", q2: " + q2)
 
 	var v1 = (q1 - p1) * (q1 - p1)
 	var v2 = (q2 - p2) * (q2 - p2)
@@ -198,8 +192,8 @@ function convertToActual(euclidean){
 }
 
 // Conversion function
-function convertPxToPercent(pixel){
-  	return (pixel / image.offsetWidth) * 100 
+function convertPxToPercent(pixel, view){
+  	return (pixel / $("#sample-image-" + view).outerWidth()) * 100 
 }
 
 // Conversion function

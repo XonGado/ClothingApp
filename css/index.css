@@ -11,7 +11,7 @@ body > .container{
 	/*min-height: calc(100vh - 64px);*/
 	width: 100%;	
 	margin-top: 50px;
-	padding-top: 10px;
+	/*padding-top: 10px;*/ 
 }
 
 body > .container > .row{
@@ -53,6 +53,14 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 	padding-bottom: 1em;
 	margin-bottom: 1em;
 }
+
+#plot-container p,
+#plot-container-lg-screen p{
+	background-color: rgba(0,0,0,0.025);
+	border-radius: 5px;
+	padding: 0.5em 1em;
+}
+
 
 /*#plot-container:hover{
 	transform: translate(0,0);
@@ -132,4 +140,35 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 .tabs .tab a{
 	display: flex;
 	align-items: center;
+}
+
+.toolbar{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.toolbar ul{
+	display: flex;
+	margin: 0;
+	/*justify-content: center;*/
+}
+
+.toolbar ul li{
+	overflow: auto;
+}
+
+.toolbar ul li label{
+	display: inline-block;
+	padding: 0.5em 1em;
+}
+
+.toolbar ul li label input[type="radio"]:checked + .label-text{
+	color: #26a69a;
+}
+
+#front-view-image-div,
+#side-view-image-div{
+	padding-top: 60px;
 }
