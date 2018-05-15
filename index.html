@@ -16,19 +16,14 @@
 	<div class="navbar-fixed">
 		<nav class="blue-grey nav-extended">
 			<div class="nav-wrapper">
-				<a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<a href="#" data-target="plots" class="sidenav-trigger"><i class="material-icons">linear_scale</i></a>
 				<ul class="right hide-on-med-and-down">
 					<li><a class="waves-effect" href="upload.html">Change Images</a></li>
-					<!-- <li><a class="waves-effect" href="#">Image Interface</a></li> -->
-				</ul>
-				<ul class="right show-on-med-and-down">
-					<li><a href="#" id="undo" class="waves-effect waves-light"><i class="material-icons left">undo</i> Undo</a></li>
 				</ul>
 			</div>
 			<div class="nav-content">
 				<ul class="tabs tabs-transparent">
-					<li class="tab col s3"><a href="#plots-div">Plotted Points</a></li>
+					<li class="tab col s3 hide-on-med-and-down"><a href="#plots-div">Plotted Points</a></li>
 					<li class="tab col s3"><a href="#front-view-image-div" class="active"><i class="material-icons left">accessibility</i> Front View</a></li>
 					<li class="tab col s3"><a href="#side-view-image-div"><i class="material-icons left">directions_walk</i> Side View</a></li>
 					<li class="tab col s3"><a href="#measurement-form-div">Form</a></li>
@@ -36,12 +31,6 @@
 			</div>
 		</nav>
 	</div>
-
-	<ul id="menu" class="sidenav">
-		<li><a class="subheader">Wish to go somewhere else?</a></li>
-		<li><a class="waves-effect blue-grey-text" href="form.html">Measurement Form</a></li>
-		<li><a class="waves-effect" href="#">Image Interface</a></li>
-	</ul>
 
 	<ul id="plots" class="sidenav">
 		<div id="plot-container"></div>
@@ -60,7 +49,7 @@
 				<div class="toolbar">
 					<ul class="left">
 						<li><label><input type="radio" value="shoulder-f" name="front-target" checked> <span class="label-text">Shoulder</span></label></li>
-						<li><label><input type="radio" value="chest-f" name="front-target" checked> <span class="label-text">Chest</span></label></li>
+						<li><label><input type="radio" value="chest-f" name="front-target"> <span class="label-text">Chest</span></label></li>
 						<li><label><input type="radio" value="waist-f" name="front-target"> <span class="label-text">Waist</span></label></li>
 						<li><label><input type="radio" value="hips-f" name="front-target"> <span class="label-text">Hips</span></label></li>
 						<li><label><input type="radio" value="inseam-f" name="front-target"> <span class="label-text">Inseam</span></label></li>
@@ -71,7 +60,7 @@
 						<li><label><input type="radio" value="body-sweep-f" name="front-target"> <span class="label-text">Body Sweep</span></label></li>
 					</ul>
 					<ul class="right">
-						<li><button id="undo-front" class="btn-flat disabled waves-effect tooltipped" data-position="bottom" data-tooltip="undo"><i class="material-icons">undo</i></button></li>
+						<li><button id="undo-front" class="btn-flat waves-effect tooltipped" data-position="bottom" data-tooltip="undo"><i class="material-icons">undo</i></button></li>
 						<li><button id="clear-front" class="btn-flat waves-effect tooltipped" data-position="bottom" data-tooltip="clear"><i class="material-icons">clear</i></button></li>
 					</ul>
 				</div>
@@ -93,7 +82,7 @@
 						<li><label><input type="radio" value="neck-s" name="side-target"> <span class="label-text">Neck</span></label></li>
 					</ul>
 					<ul class="right">
-						<li><button id="undo-side" class="btn-flat disabled waves-effect tooltipped" data-position="bottom" data-tooltip="undo"><i class="material-icons">undo</i></button></li>
+						<li><button id="undo-side" class="btn-flat waves-effect tooltipped" data-position="bottom" data-tooltip="undo"><i class="material-icons">undo</i></button></li>
 						<li><button id="clear-side" class="btn-flat waves-effect tooltipped" data-position="bottom" data-tooltip="clear"><i class="material-icons">clear</i></button></li>
 					</ul>
 				</div>
@@ -116,7 +105,7 @@
 							<div class="col s12">
 								<span class="helper-text blue-grey-text text-lighten-3">Select a unit of measure</span>
 								<p><label>
-									<input type="radio" name="dept" value="men" />
+									<input type="radio" name="dept" value="men" checked/>
 									<span>Men's</span>
 								</label></p>
 								<p><label>
@@ -138,12 +127,12 @@
 							<div class="col s12">
 								<span class="helper-text blue-grey-text text-lighten-3">Select a unit of measure</span>
 								<p><label>
-									<input type="radio" id="centimeters" name="unit" value="centimeters" />
-									<span>Centimeters</span>
+									<input type="radio" id="inches" name="unit" value="inches" checked/>
+									<span>Inches</span>
 								</label></p>
 								<p><label>
-									<input type="radio" id="inches" name="unit" value="inches" />
-									<span>Inches</span>
+									<input type="radio" id="centimeters" name="unit" value="centimeters" />
+									<span>Centimeters</span>
 								</label></p>
 							</div>
 
@@ -151,43 +140,43 @@
 						        <h5>Front</h5>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="shoulder-f" name="shoulder-f" type="text" class="validate">
+					        	<input placeholder="inch" id="shoulder-f" name="shoulder-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="shoulder">Shoulder</label>
 					        </div>
 							<div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="chest-f" name="chest-f" type="text" class="validate">
+					        	<input placeholder="inch" id="chest-f" name="chest-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="chest">Chest</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="waist-f" name="waist-f" type="text" class="validate">
+					        	<input placeholder="inch" id="waist-f" name="waist-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="waist">Waist</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="hips-f" name="hips-f" type="text" class="validate">
+					        	<input placeholder="inch" id="hips-f" name="hips-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="hips">Hips</label>
 					        </div>
 							<div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="inseam-f" name="inseam-f" type="text" class="validate">
+					        	<input placeholder="inch" id="inseam-f" name="inseam-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="inseam">Inseam</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="neck-f" name="neck-f" type="text" class="validate">
+					        	<input placeholder="inch" id="neck-f" name="neck-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="neck">Neck</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="sleeve-f" name="sleeve-f" type="text" class="validate">
+					        	<input placeholder="inch" id="sleeve-f" name="sleeve-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="sleeve">Sleeve</label>
 					        </div>
 							<div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="height-f" name="height-f" type="text" class="validate">
+					        	<input placeholder="inch" id="height-f" name="height-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="height">Height</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="body-length-f" name="body-length-f" type="text" class="validate">
+					        	<input placeholder="inch" id="body-length-f" name="body-length-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="body-length">Body Length</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="body-sweep-f" name="body-sweep-f" type="text" class="validate">
+					        	<input placeholder="inch" id="body-sweep-f" name="body-sweep-f" type="text" class="validate">
 					        	<label class="active text-uppercase" for="body-sweep">Body Sweep</label>
 					        </div>
 
@@ -195,23 +184,48 @@
 						        <h5>Side</h5>
 					        </div>
 							<div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="chest-s" name="chest-s" type="text" class="validate">
+					        	<input placeholder="inch" id="chest-s" name="chest-s" type="text" class="validate">
 					        	<label class="active text-uppercase" for="chest">Chest</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="waist-s" name="waist-s" type="text" class="validate">
+					        	<input placeholder="inch" id="waist-s" name="waist-s" type="text" class="validate">
 					        	<label class="active text-uppercase" for="waist">Waist</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="hips-s" name="hips-s" type="text" class="validate">
+					        	<input placeholder="inch" id="hips-s" name="hips-s" type="text" class="validate">
 					        	<label class="active text-uppercase" for="hips">Hips</label>
 					        </div>
 					        <div class="input-field col s4 m2 l2">
-					        	<input placeholder="cm" id="neck-s" name="neck-s" type="text" class="validate">
+					        	<input placeholder="inch" id="neck-s" name="neck-s" type="text" class="validate">
 					        	<label class="active text-uppercase" for="neck">Neck</label>
 					        </div>
-							<div class="col s12">
-								<button class="btn btn-block waves-effect waves-light" type="button">
+							<!-- <div class="col s12 m6">
+								<select class="icons">
+									<option value="" disabled selected>Choose a brand</option>
+									<option value="" data-icon="images/franco.jpg">example 1</option>
+									<option value="" data-icon="images/franco.jpg">example 2</option>
+									<option value="" data-icon="images/franco.jpg">example 3</option>
+								</select>
+								<label>Best Fitting Brand</label>
+							</div> -->
+							<div class="input-field col s12 m8">
+								<i class="material-icons prefix">local_offer</i>
+								<input type="text" id="autocomplete-input" class="autocomplete">
+								<label>Search a brand</label>
+							</div>
+
+							<div class="input-field col s12 m4">
+								<select>
+									<option value="" disabled selected>Choose your size</option>
+									<option value="s">Small</option>
+									<option value="m">Medium</option>
+									<option value="l">Large</option>
+									<option value="xl">XLarge</option>
+								</select>
+								<label>Size</label>
+							</div>
+							<div class="col s12 m12">
+								<button class="btn btn-block waves-effect waves-light" type="submit">
 									<i class="material-icons left">visibility</i>
 									Find my Size
 								</button>
@@ -230,7 +244,15 @@
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.sidenav').sidenav();
+		$('.sidenav').sidenav()
+		$('select').formSelect()
+		$('input.autocomplete').autocomplete({
+			data: {
+				"Bench": null,
+				"Penshoppe": null,
+				"RRJ": null
+			},
+		});
 		$('.tooltipped').tooltip({
 			margin: 0,
 			transitionMovement: 0
@@ -240,12 +262,12 @@
 			swipeable: true
 		});
 		$('#inches').click(function(){
-			$('#measurements-form .input-field > input[type="text"]').each( function( index, element ) {
+			$('#measurement-form .input-field > input[type="text"]').each( function( index, element ) {
 			    $(element).attr("placeholder", "inch")
 			});
 		});
 		$('#centimeters').click(function(){
-			$('#measurements-form .input-field > input[type="text"]').each( function( index, element ) {
+			$('#measurement-form .input-field > input[type="text"]').each( function( index, element ) {
 			    $(element).attr("placeholder", "cm")
 			});
 		});

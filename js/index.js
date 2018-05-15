@@ -7,14 +7,14 @@ var plots = []
 updateInformation()
 
 // Creates and plots the points when user clicks on the click-field
-function saveCoordinate(event, view){
+function saveCoordinate(event, view, target){
 	var height = $("#sample-image-" + view).outerHeight()
 	var width = $("#sample-image-" + view).outerWidth()
 	var clickX = event.offsetX
 	var clickY = event.offsetY
 
 	var point = document.createElement("span")
-	point.className = "point " + target(view)
+	point.className = "point " + target
 	point.setAttribute("data-x", clickX / width)
 	point.setAttribute("data-y", clickY / height)
 	point.style.left = ((clickX / width) * 100) + "%"
@@ -25,14 +25,37 @@ function saveCoordinate(event, view){
 		y: (clickY / height) * 100
 	}
 
-	if (previousPoint == null) {
-		if($("#point-container-" + view + " ." + target(view)).length % 3 == 0){
-			console.log($("#point-container-" + view + " ." + target(view)).length)
-			clear(view, target(view))
+	if (view == "front") {
+		var plottedPointsOnTarget = frontArray[index(view, target)]
+		
+	} else {
+		var plottedPointsOnTarget = sideArray[index(view, target)]
+	}
+
+	if (plottedPointsOnTarget.length == 0 || plottedPointsOnTarget.length == 2) {
+		if($("#point-container-" + view + " ." + target).length % 3 == 0){
+			console.log($("#point-container-" + view + " ." + target).length)
+			clear(view, target)
 		}
+
+		if (view == "front") {
+			frontArray[index(view, target)].push(newPoint)
+		} else {
+			sideArray[index(view, target)].push(newPoint)
+		}
+
 		previousPoint = newPoint
 		plottedPoints.push(newPoint)
-	} else {
+	} else if (plottedPointsOnTarget.length == 1) {
+
+		if (view == "front") {
+			frontArray[index(view, target)].push(newPoint)
+			var previousPoint = frontArray[index(view, target)][0]
+		} else {
+			sideArray[index(view, target)].push(newPoint)
+			var previousPoint = sideArray[index(view, target)][0]
+		}
+		
 		plotPoints(previousPoint, newPoint, view)
 
 		let p1 = convertPercentToPx(newPoint.x, width) 
@@ -41,7 +64,7 @@ function saveCoordinate(event, view){
 		let q2 = convertPercentToPx(previousPoint.y, height) 
 		var euclideanValue = euclidean(p1, p2, q1, q2)
 
-		$("#" + target(view)).val(euclideanValue.toFixed(2))
+		$("#" + target).val(euclideanValue.toFixed(2))
 
 		var newMeasurement = {
 			euclidean: euclideanValue,

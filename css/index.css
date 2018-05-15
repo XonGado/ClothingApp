@@ -162,7 +162,7 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 
 .toolbar ul li label{
 	display: inline-block;
-	padding: 0.5em 1em;
+	padding: 0.5em;
 }
 
 .toolbar ul li label input[type="radio"]:checked + .label-text{
@@ -172,4 +172,9 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 #front-view-image-div,
 #side-view-image-div{
 	padding-top: 60px;
+}
+
+.select-dropdown img{
+	object-fit: cover;
+	object-position: center;
 }

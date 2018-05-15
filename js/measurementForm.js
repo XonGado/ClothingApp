@@ -8,6 +8,8 @@ var SpointContainer = $("#point-container-side")
 var Simage = $("#sample-image-side")
 var Sfield = $("#click-field-side")
 
+initializeArrays()
+
 FimageContainer.height(Fimage.outerHeight() + "px")
 FimageContainer.width(Fimage.outerWidth() + "px")
 
@@ -15,11 +17,11 @@ SimageContainer.height(Simage.outerHeight() + "px")
 SimageContainer.width(Simage.outerWidth() + "px")
 
 Ffield.click(function(e){
-	saveCoordinate(e, "front")
+	saveCoordinate(e, "front", target("front"))
 })
 
 Sfield.click(function(e){
-	saveCoordinate(e, "side")
+	saveCoordinate(e, "side", target("side"))
 })
 
 $("#undo-front").click(function(){
@@ -41,25 +43,13 @@ $("#clear-side").click(function(){
 var selectedFront = target("front")
 var selectedSide = target("side")
 
-var frontPlots = {
-	chest: {point_i: null, point_f: null},
-	waist: {point_i: null, point_f: null},
-	hips: {point_i: null, point_f: null},
-	inseam: {point_i: null, point_f: null},
-	neck: {point_i: null, point_f: null},
-	sleeve: {point_i: null, point_f: null},
-	height: {point_i: null, point_f: null}
-}
-
-var sidePlots = {
-	chest: {point_i: null, point_f: null},
-	waist: {point_i: null, point_f: null},
-	hips: {point_i: null, point_f: null},
-	neck: {point_i: null, point_f: null}
-}
-
 function target(view){
 	return $("#" + view + "-view-image-div .toolbar .left input[name='" + view + "-target']:checked").eq(0).val()
+}
+
+function index(view, target){
+	var selected = $("input[value='" + target + "']")
+	return $("#" + view + "-view-image-div .toolbar .left input[name='" + view + "-target']").index(selected)
 }
 
 function next(target){
@@ -74,6 +64,12 @@ function clear(view, target){
 	})
 
 	$("#" + target).val("")
+
+	if (view == "front") {
+		frontArray[index(view, target)] = []
+	} else {
+		sideArray[index(view, target)] = []
+	}
 }
 
 function undoTarget(view, target){
@@ -84,20 +80,31 @@ function undoTarget(view, target){
 	} else {
 		elements.eq(elements.length - 1).remove()
 	}
-}
 
-managePlot(target("front"))
-
-function managePlot(target){
-	view = target.split("-")[1]
-	target = target.split("-")[0]
-
-	if (view == "f") {
-
+	if (view == "front") {
+		frontArray[index(view, target)].pop()
 	} else {
-
+		sideArray[index(view, target)].pop()
 	}
 }
+
+function initializeArrays(){
+	var frontVariables = $("#front-view-image-div .toolbar .left input[name='front-target']")
+	var sideVariables = $("#side-view-image-div .toolbar .left input[name='side-target']")
+
+	frontArray = new Array(frontVariables.length)
+	sideArray = new Array(sideVariables.length)
+
+	for (var i = 0; i < frontArray.length; i++) {
+		frontArray[i] = []
+	}
+
+	for (var i = 0; i < sideArray.length; i++) {
+		sideArray[i] = []
+	}
+}
+
+
 
 
 
