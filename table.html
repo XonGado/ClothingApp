@@ -17,10 +17,14 @@
 	</div>
 	<div class="container">
 		<div class="display-container">
+			{% for brand in brands %}
 			<div class="brand">
-				<h4 class="name">Abercrombie & Fitch</h4>
+				<!-- <h4 class="name">Abercrombie & Fitch</h4> -->
+				<h4 class="name">{{ brand.name }}</h4>
+				{% for size in brand.sizes %}
 				<div>
-					<h5 class="cluster"><span class="size">XS</span> Bottoms</h5>
+					<!-- <h5 class="cluster"><span class="size">XS</span> Bottoms</h5> -->
+					<h5 class="cluster"><span class="size">{{ size.size }}</span> {{ size.cluster }}</h5>
 					<div class="row">
 						<div class="col s12">
 							<h6>Numeric Size</h6>
@@ -63,7 +67,9 @@
 						</div>
 					</div>
 				</div>
+				{% endfor %}
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 
