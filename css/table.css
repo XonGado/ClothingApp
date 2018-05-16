@@ -1,0 +1,52 @@
+.badge{
+	background-color: #222;
+	color: white;
+	min-width: unset!important;
+	border-radius: 4px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.sex{
+	right: 2rem;
+}
+
+.size{
+	background-color: #222;
+	color: white;
+	border-radius: 4px;
+	display: inline-flex;
+	min-width: 1.25em;
+	text-align: center;
+	padding: 0em 0.1em 0.1em 0.1em;
+	align-items: center;
+	justify-content: center;
+}
+
+.item{
+	position: relative;
+	/*border-bottom: 1px solid #DDD;*/
+	padding-bottom: 1em;
+}
+
+.brands{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.brands a{
+	display: inline-block;
+	border: 1px solid #DDD;
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	margin-right: 0.25rem;
+}
+
+/*.brand{
+	margin-top: 0;
+}*/
+
+.name{
+	margin-bottom: 0;
+}
