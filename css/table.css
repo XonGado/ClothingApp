@@ -50,3 +50,15 @@
 .name{
 	margin-bottom: 0;
 }
+
+.female,
+.Female{
+	background-color: rgb(216,27,96);
+	color: white; 
+}
+
+.male,
+.Male{
+	background-color: rgb(94,53,177);
+	color: white; 
+}

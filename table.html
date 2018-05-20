@@ -17,52 +17,65 @@
 	</div>
 	<div class="container">
 		<div class="display-container">
-			{% for brand in brands %}
+			{% for key, value in brands.items %}
 			<div class="brand">
-				<!-- <h4 class="name">Abercrombie & Fitch</h4> -->
-				<h4 class="name">{{ brand.name }}</h4>
-				{% for size in brand.sizes %}
+				<h4 class="name">{{ key }}</h4>
+				{% for size in value %} 
 				<div>
-					<!-- <h5 class="cluster"><span class="size">XS</span> Bottoms</h5> -->
 					<h5 class="cluster"><span class="size">{{ size.size }}</span> {{ size.cluster }}</h5>
+					<div class="chip {{ size.sex }}">{{ size.sex }}</div>
 					<div class="row">
 						<div class="col s12">
-							<h6>Numeric Size</h6>
 							<table>
+								{% if size.neck > 0 %}
 								<tr>
-									<th>Size</th>
+									<th>Neck</th>
+									<td>{{ size.neck }}</td>
+								</tr>
+								{% endif %}
+
+								{% if size.chest > 0 %}
+								<tr>
+									<th>Chest</th>
+									<td>{{ size.chest }}</td>
+								</tr>
+								{% endif %}
+
+								{% if size.waist > 0 %}
+								<tr>
 									<th>Waist</th>
+									<td>{{ size.waist }}</td>
 								</tr>
+								{% endif %}
+
+								{% if size.hips > 0 %}
 								<tr>
-									<td>000</td>
-									<td>23</td>
+									<th>Hips</th>
+									<td>{{ size.hips }}</td>
 								</tr>
-							</table>
-						</div>
-						<div class="col s12">
-							<h6>Alpha Size</h6>
-							<table>
+								{% endif %}
+
+								{% if size.inseam > 0 %}
 								<tr>
-									<th>Size</th>
-									<th>Waist</th>
+									<th>Inseam</th>
+									<td>{{ size.inseam }}</td>
 								</tr>
+								{% endif %}
+
+								{% if size.shoulder_width > 0 %}
 								<tr>
-									<td>XS</td>
-									<td>23-25</td>
+									<th>Shoulder Width</th>
+									<td>{{ size.shoulder_width }}</td>
 								</tr>
-							</table>
-						</div>
-						<div class="col s12">
-							<h6>Classification</h6>
-							<table>
+								{% endif %}
+
+								{% if size.sleeve_length > 0 %}
 								<tr>
-									<th>Size</th>
-									<th>Waist</th>
+									<th>Sleave Length</th>
+									<td>{{ size.sleeve_length }}</td>
 								</tr>
-								<tr>
-									<td>XS</td>
-									<td>23-25</td>
-								</tr>
+								{% endif %}
+
 							</table>
 						</div>
 					</div>
@@ -72,24 +85,6 @@
 			{% endfor %}
 		</div>
 	</div>
-
-	<!-- select all brands unique
-		bench
-		abercrombie
-
-
-	for brands select all where == brand
-		bench
-		abercrombie
-		return array list
-
-	array of brands contain sang sizes
-
-	brand
-		each sizes
-	brand
-		each sizes -->
-
 </body>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
