@@ -48,7 +48,11 @@ body{
 	margin-bottom: auto;
 }
 
-.carousel-item:not(.active){
+.carousel-item:not(.active) > *{
+	transition: opacity 1s;
+}
+
+.carousel-item:not(.active) > *{
 	filter: blur(1px);
 	opacity: 0.25!important;
 }
