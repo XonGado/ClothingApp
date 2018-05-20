@@ -98,6 +98,7 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 	left: 0;
 	height: 100%;
 	width: 100%;
+	background-color: rgba(0,0,0,0.2);
 }
 
 .click-field{
@@ -178,3 +179,19 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 	object-fit: cover;
 	object-position: center;
 }
+
+.shoulder-f		{ background-color: #EC644B; border-color: #EC644B!important; }
+.chest-f		{ background-color: #D2527F; border-color: #D2527F!important; }
+.waist-f		{ background-color: #9B59B6; border-color: #9B59B6!important; }
+.hips-f			{ background-color: #5C97BF; border-color: #5C97BF!important; }
+.inseam-f		{ background-color: #87D37C; border-color: #87D37C!important; }
+.neck-f			{ background-color: #E9D460; border-color: #E9D460!important; }
+.sleeve-f		{ background-color: #F4B350; border-color: #F4B350!important; }
+.height-f		{ background-color: #ECF0F1; border-color: #ECF0F1!important; }
+.body-length-f	{ background-color: #6BB9F0; border-color: #6BB9F0!important; }
+.body-sweep-f	{ background-color: #1E8BC3; border-color: #1E8BC3!important; }
+
+.chest-s	{ background-color: #EC644B; border-color: #EC644B!important; }
+.waist-s	{ background-color: #D2527F; border-color: #D2527F!important; }
+.hips-s		{ background-color: #9B59B6; border-color: #9B59B6!important; }
+.neck-s		{ background-color: #5C97BF; border-color: #5C97BF!important; }

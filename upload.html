@@ -9,7 +9,7 @@
 <body>
 	<a href="#video-help" class="btn-floating waves-light waves-effect modal-trigger" id="help-btn"><i class="material-icons">help</i></a>
 
-	<div class="container">
+<div class="container">
 		<div class="row">
 			<div class="col s12" id="upload-images-div">
 				<form method="post" enctype="multipart/form-data">
@@ -35,6 +35,42 @@
 								<input type="file" id="input-side" accept="image/*" name="side-img">
 							</label>
 							<img src="#" class="preview-image" id="preview-side">
+						</div>
+
+						<div class="carousel-item center">
+							<div class="row">
+								<h4>Select paper description</h4>
+								<div class="input-field col s12">
+									<select>
+										<option value="1">Letter (8.5" x 11")</option>			
+										<option value="2">Tabloid (11" x 17")</option>			
+										<option value="3">Legal (8.5" x 14")</option>			
+										<option value="4">Statement (5.5" x 8.5")</option>			
+										<option value="5">Executive (7.25" x 10.5")</option>			
+										<option value="6">Folio (8.5" x 13")</option>			
+										<option value="7">A3 (297mm x 420mm)</option>			
+										<option value="8">A4 (210mm x 297mm)</option>			
+										<option value="9">A5 (148mm x 210mm)</option>			
+										<option value="10">B4 (250mm x 353mm)</option>			
+										<option value="11">B5 (176mm x 250mm)</option>			
+									</select>
+									<label>Paper Size</label>
+								</div>
+								<div class="input-field col s12">
+									<select>
+										<option value="1">White</option>
+										<option value="2">Black</option>
+										<option value="3">Red</option>
+										<option value="4">Orange</option>
+										<option value="5">Yellow</option>
+										<option value="6">Green</option>
+										<option value="7">Blue</option>
+										<option value="8">Purple</option>
+										<option value="9">Pink</option>
+									</select>
+									<label>Color</label>
+								</div>
+							</div>
 						</div>
 
 						<div class="carousel-item center">
@@ -64,6 +100,7 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('select').formSelect();
 		$('.carousel').carousel({
 			noWrap: true,
 			padding: 50

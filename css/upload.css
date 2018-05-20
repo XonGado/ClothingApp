@@ -14,7 +14,7 @@ body{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
+	min-height: 90vh;
 }
 
 #upload-images-div > form{
@@ -46,6 +46,11 @@ body{
 
 #upload-btn-side + span{
 	margin-bottom: auto;
+}
+
+.carousel-item:not(.active){
+	filter: blur(1px);
+	opacity: 0.25!important;
 }
 
 .carousel-item .preview-image{
