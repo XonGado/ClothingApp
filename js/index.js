@@ -13,26 +13,18 @@ function saveCoordinate(event, view, target){
 	var clickX = event.offsetX
 	var clickY = event.offsetY
 
-	var point = document.createElement("span")
-	point.className = "point " + target
-	point.setAttribute("data-x", clickX / width)
-	point.setAttribute("data-y", clickY / height)
-	point.style.left = ((clickX / width) * 100) + "%"
-	point.style.top = ((clickY / height) * 100) + "%"
-
-	var newPoint = {
-		x: (clickX / width) * 100,
-		y: (clickY / height) * 100
-	}
-
 	if (view == "front") {
 		var plottedPointsOnTarget = frontArray[index(view, target)]
-		
 	} else {
 		var plottedPointsOnTarget = sideArray[index(view, target)]
 	}
 
 	if (plottedPointsOnTarget.length == 0 || plottedPointsOnTarget.length == 2) {
+		var newPoint = {
+			x: (clickX / width) * 100,
+			y: (clickY / height) * 100
+		}
+
 		if($("#point-container-" + view + " ." + target).length % 3 == 0){
 			console.log($("#point-container-" + view + " ." + target).length)
 			clear(view, target)
@@ -44,18 +36,36 @@ function saveCoordinate(event, view, target){
 			sideArray[index(view, target)].push(newPoint)
 		}
 
+		createPoint(view, newPoint.x, newPoint.y, target)
 		previousPoint = newPoint
 		plottedPoints.push(newPoint)
 	} else if (plottedPointsOnTarget.length == 1) {
 
 		if (view == "front") {
-			frontArray[index(view, target)].push(newPoint)
 			var previousPoint = frontArray[index(view, target)][0]
 		} else {
-			sideArray[index(view, target)].push(newPoint)
 			var previousPoint = sideArray[index(view, target)][0]
 		}
-		
+
+		if (!(target == "inseam-f" || target == "sleeve-f" || target == "height-f")) {
+			var newPoint = {
+				x: (clickX / width) * 100,
+				y: previousPoint.y
+			}
+		} else {
+			var newPoint = {
+				x: previousPoint.x,
+				y: (clickY / height) * 100
+			}
+		}
+
+		if (view == "front") {
+			frontArray[index(view, target)].push(newPoint)
+		} else {
+			sideArray[index(view, target)].push(newPoint)
+		}
+
+		createPoint(view, newPoint.x, newPoint.y, target)
 		plotPoints(previousPoint, newPoint, view)
 
 		let p1 = convertPercentToPx(newPoint.x, width) 
@@ -89,6 +99,25 @@ function saveCoordinate(event, view, target){
 		plottedPoints.push(newPoint)
 		previousPoint = null
 	}
+
+}
+
+function createPoint(view, x, y, target){
+	console.log(x)
+	console.log(y)
+
+	var height = $("#sample-image-" + view).outerHeight()
+	var width = $("#sample-image-" + view).outerWidth()
+	var point = document.createElement("span")
+
+	point.className = "point " + target
+	point.setAttribute("data-x", x / width)
+	point.setAttribute("data-y", y / height)
+	point.style.left = x + "%"
+	point.style.top = y + "%"
+
+	console.log(point.style.left)
+	console.log(point.style.top)
 
 	$("#point-container-" + view).append(point)
 }
@@ -131,12 +160,9 @@ function plotPoints(point1, point2, view){
 	$("#point-container-" + view).append(createLine(p1, p2, q1, q2, view));
 }
 
-//////////////////////////////////////////////////////////////////
-
 
 // Calculates the line's postion, length, and angle
 function createLine(x1, y1, x2, y2, view) {
-	console.log("createLine(" + x1 + ", " + y1 + ", " + x2 + ", " + y2 + ")")
 
     var a = x1 - x2,
         b = y1 - y2,

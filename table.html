@@ -5,6 +5,13 @@
 	<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/table.css">
+	<style type="text/css">
+		.name{
+			display: flex;
+			align-content: center;
+			justify-content: center;
+		}
+	</style>
 </head>
 <body>
 	<div class="navbar-fixed">
@@ -17,72 +24,80 @@
 	</div>
 	<div class="container">
 		<div class="display-container">
-			{% for key, value in brands.items %}
+			<!-- {% for key, value in brands.items %} -->
 			<div class="brand">
-				<h4 class="name">{{ key }}</h4>
-				{% for size in value %} 
+				<h4 class="name"><div class="chip {{ size.sex }}">M</div> Abercrombie and Fitcher</h4>
+				<!-- <h4 class="name">{{ key }}</h4> -->
+				<!-- {% for size in value %}  -->
 				<div>
-					<h5 class="cluster"><span class="size">{{ size.size }}</span> {{ size.cluster }}</h5>
-					<div class="chip {{ size.sex }}">{{ size.sex }}</div>
+					<h5 class="cluster"><span class="size">XS</span> Skinny jeans</h5>
+					<!-- <h5 class="cluster"><span class="size">{{ size.size }}</span> {{ size.cluster }}</h5> -->
 					<div class="row">
 						<div class="col s12">
 							<table>
-								{% if size.neck > 0 %}
+								<!-- {% if size.neck > 0 %} -->
 								<tr>
 									<th>Neck</th>
-									<td>{{ size.neck }}</td>
+									<td>34</td>
+									<!-- <td>{{ size.neck }}</td> -->
 								</tr>
-								{% endif %}
+								<!-- {% endif %} -->
 
-								{% if size.chest > 0 %}
+								<!-- {% if size.chest > 0 %} -->
 								<tr>
 									<th>Chest</th>
-									<td>{{ size.chest }}</td>
+									<td>34</td>
+									<!-- <td>{{ size.chest }}</td> -->
 								</tr>
-								{% endif %}
+								<!-- {% endif %} -->
 
-								{% if size.waist > 0 %}
+								<!-- {% if size.waist > 0 %} -->
 								<tr>
 									<th>Waist</th>
-									<td>{{ size.waist }}</td>
+									<td>34</td>
+									<!-- <td>{{ size.waist }}</td> -->
 								</tr>
-								{% endif %}
+								<!-- {% endif %} -->
 
-								{% if size.hips > 0 %}
+								<!-- {% if size.hips > 0 %} -->
 								<tr>
 									<th>Hips</th>
-									<td>{{ size.hips }}</td>
+									<td>34</td>
+									<!-- <td>{{ size.hips }}</td> -->
 								</tr>
-								{% endif %}
+								<!-- {% endif %} -->
 
-								{% if size.inseam > 0 %}
+								<!-- {% if size.inseam > 0 %} -->
 								<tr>
 									<th>Inseam</th>
-									<td>{{ size.inseam }}</td>
+									<td>34</td>
+									<!-- <td>{{ size.inseam }}</td> -->
 								</tr>
-								{% endif %}
+								<!-- {% endif %} -->
 
-								{% if size.shoulder_width > 0 %}
+								<!-- {% if size.shoulder_width > 0 %} -->
 								<tr>
 									<th>Shoulder Width</th>
-									<td>{{ size.shoulder_width }}</td>
+									<td>34</td>
+									<!-- <td>{{ size.shoulder_width }}</td> -->
 								</tr>
-								{% endif %}
+								<!-- {% endif %} -->
 
-								{% if size.sleeve_length > 0 %}
+								<!-- {% if size.sleeve_length > 0 %} -->
 								<tr>
 									<th>Sleave Length</th>
-									<td>{{ size.sleeve_length }}</td>
+									<td>34</td>
+									<!-- <td>{{ size.sleeve_length }}</td> -->
 								</tr>
-								{% endif %}
+								<!-- {% endif %} -->
 
 							</table>
 						</div>
 					</div>
 				</div>
-				{% endfor %}
+				<!-- {% endfor %} -->
 			</div>
-			{% endfor %}
+			<!-- {% endfor %} -->
 		</div>
 	</div>
 </body>
