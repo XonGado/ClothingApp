@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table</title>
+	<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/table.css">
+	<style type="text/css">
+		.name{
+			display: flex;
+			align-content: center;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="navbar-fixed">
+		<nav class="blue-grey">
+			<ul class="right">
+				<li><a href="index.html">Measurement</a></li>
+				<li><a href="upload.html">Change Images</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="container">
+		<div class="display-container">
+			<!-- {% for key, value in brands.items %} -->
+			<div class="brand">
+				<h4 class="name"><div class="chip {{ size.sex }}">M</div> Abercrombie and Fitcher</h4>
+				<!-- <h4 class="name">{{ key }}</h4> -->
+				<!-- {% for size in value %}  -->
+				<div>
+					<h5 class="cluster"><span class="size">XS</span> Skinny jeans</h5>
+					<!-- <h5 class="cluster"><span class="size">{{ size.size }}</span> {{ size.cluster }}</h5> -->
+					<div class="row">
+						<div class="col s12">
+							<table>
+								<!-- {% if size.neck > 0 %} -->
+								<tr>
+									<th>Neck</th>
+									<td>34</td>
+									<!-- <td>{{ size.neck }}</td> -->
+								</tr>
+								<!-- {% endif %} -->
+
+								<!-- {% if size.chest > 0 %} -->
+								<tr>
+									<th>Chest</th>
+									<td>34</td>
+									<!-- <td>{{ size.chest }}</td> -->
+								</tr>
+								<!-- {% endif %} -->
+
+								<!-- {% if size.waist > 0 %} -->
+								<tr>
+									<th>Waist</th>
+									<td>34</td>
+									<!-- <td>{{ size.waist }}</td> -->
+								</tr>
+								<!-- {% endif %} -->
+
+								<!-- {% if size.hips > 0 %} -->
+								<tr>
+									<th>Hips</th>
+									<td>34</td>
+									<!-- <td>{{ size.hips }}</td> -->
+								</tr>
+								<!-- {% endif %} -->
+
+								<!-- {% if size.inseam > 0 %} -->
+								<tr>
+									<th>Inseam</th>
+									<td>34</td>
+									<!-- <td>{{ size.inseam }}</td> -->
+								</tr>
+								<!-- {% endif %} -->
+
+								<!-- {% if size.shoulder_width > 0 %} -->
+								<tr>
+									<th>Shoulder Width</th>
+									<td>34</td>
+									<!-- <td>{{ size.shoulder_width }}</td> -->
+								</tr>
+								<!-- {% endif %} -->
+
+								<!-- {% if size.sleeve_length > 0 %} -->
+								<tr>
+									<th>Sleave Length</th>
+									<td>34</td>
+									<!-- <td>{{ size.sleeve_length }}</td> -->
+								</tr>
+								<!-- {% endif %} -->
+
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- {% endfor %} -->
+			</div>
+			<!-- {% endfor %} -->
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+</html>

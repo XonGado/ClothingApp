@@ -47,7 +47,7 @@ function saveCoordinate(event, view, target){
 			var previousPoint = sideArray[index(view, target)][0]
 		}
 
-		if (!(target == "inseam-f" || target == "sleeve-f" || target == "height-f")) {
+		if (!(target == "inseam-f" || target == "sleeve-s" || target == "height-f")) {
 			var newPoint = {
 				x: (clickX / width) * 100,
 				y: previousPoint.y
@@ -78,7 +78,7 @@ function saveCoordinate(event, view, target){
 
 		var newMeasurement = {
 			euclidean: euclideanValue,
-			actual: convertToActual(euclideanValue),
+			actual: convertToActual(euclideanValue, pixelsPerMetric),
 			percentLength: convertPxToPercent(euclideanValue, view),
 			points: {
 				point_i: {
