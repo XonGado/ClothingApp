@@ -74,7 +74,7 @@ function saveCoordinate(event, view, target){
 		let q2 = convertPercentToPx(previousPoint.y, height) 
 		var euclideanValue = euclidean(p1, p2, q1, q2)
 
-		$("#" + target).val(euclideanValue.toFixed(2))
+		$("#" + target).val(convertToActual(euclideanValue, pixelsPerMetric).toFixed(2))
 
 		var newMeasurement = {
 			euclidean: euclideanValue,
@@ -218,9 +218,7 @@ function euclidean(p1, p2, q1, q2){
 }
 
 // Returns a measurement by converting a euclidean value.
-function convertToActual(euclidean){
-	var pixelsPerMetric = 5.17891350813243
-
+function convertToActual(euclidean, pixelsPerMetric){
 	var measurement = euclidean / pixelsPerMetric
 
 	return measurement
