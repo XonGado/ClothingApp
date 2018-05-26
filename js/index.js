@@ -188,7 +188,7 @@ function createLineElement(x, y, length, angle, view) {
 
   	length = (length / width) * 100 
   	x = (x / width) * 100 
-  	y = ((y-0.5) / height) * 100 
+  	y = (y / height) * 100 
 
     var styles = 'border: 0.5px solid white; '
                + 'width: ' + length + '%; '

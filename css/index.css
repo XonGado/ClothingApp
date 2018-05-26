@@ -112,11 +112,16 @@ body > .container > .row > .tabs-content.carousel-slider.carousel{
 .point{
 	position: absolute;
 	display: block;
-	height: 0.25em;
-	width: 0.25em;
-	transform: translate(-0.125em, -0.125em);
+	height: 0.5em;
+	width: 1px;
+	transform: translate(0, -40%);
 	background-color: white;
-	border-radius: 50%;
+}
+
+.point.inseam-f,
+.point.height-f,
+.point.sleeve-s{
+	transform: translate(0, -40%) rotate(90deg);
 }
 
 #loader{
