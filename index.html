@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
@@ -64,7 +65,7 @@
 					<div class="image-container" id="image-container-front">
 						<img class="sample-image" id="sample-image-front" src="images/sample.jpg">
 						<div class="point-container" id="point-container-front"></div>
-						<div class="click-field waves-effect waves-light" id="click-field-front"></div>
+						<div class="click-field" id="click-field-front"></div>
 					</div>
 				</div>
 			</div>
@@ -87,7 +88,7 @@
 					<div class="image-container" id="image-container-side">
 						<img class="sample-image" id="sample-image-side" src="images/sample.jpg">
 						<div class="point-container" id="point-container-side"></div>
-						<div class="click-field waves-effect waves-light" id="click-field-side"></div>
+						<div class="click-field" id="click-field-side"></div>
 					</div>
 				</div>
 			</div>
@@ -216,6 +217,15 @@
 			</div>
 		</div>
 	</div>
+	<footer>
+		<div class="row">
+			<div class="col s12 m6 offset-m3 l4 offset-l4">
+				<p class="range-field">
+			   		<input type="range" id="zoom" min="0" max="100" />
+			    </p>
+			</div>
+		</div>
+	</footer>
 </body>
 
 <script type="text/javascript">
@@ -236,6 +246,16 @@
 				"RRJ": null
 			},
 		});
+		$("#zoom").change(function(){
+			let value = (($("#zoom").val())/100) * 2
+
+			$(".image-container").eq(0).css("transform", "scale(" + (1 + value) + "," + (1 + value) + ")")
+			$(".image-container").eq(1).css("transform", "scale(" + (1 + value) + "," + (1 + value) + ")")
+
+			$(".image-container").eq(0).parent().css("padding", ((value/2)*100)*2.5 + "px" + " 0")
+			$(".image-container").eq(1).parent().css("padding", ((value/2)*100)*2.5 + "px" + " 0")
+
+		})
 		$('.tooltipped').tooltip({
 			margin: 0,
 			transitionMovement: 0
